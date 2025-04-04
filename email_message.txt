@@ -1,0 +1,5 @@
+Bonjour,
+
+Le script SQL %1 a été exécuté avec succès sur tous les serveurs.
+
+Cordialement.

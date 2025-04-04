@@ -1,0 +1,9 @@
+{
+    "LAB": {
+        "host": "10.12.66.21",
+        "user": "asoulat",
+        "password": "123@log",
+        "database": "resebloc_lab84",
+        "ssl_ca": "C:/Mes Projets/Python/Deploiement_Script/Deploiement_Script/certif/DEV-14.pem"
+    }
+}

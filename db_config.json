@@ -1,0 +1,58 @@
+{
+    "CSJ": {
+        "host": "10.2.110.7",
+        "user": "majtablesofficielles",
+        "password": "BSg.,pmbut5EaDR3v22L",
+        "database": "resebloc",
+        "ssl_ca": "C:/Mes Projets/Python/Deploiement_Script/Deploiement_Script/certif/DEV-14.pem"
+    },
+    "CDG": {
+        "host": "10.1.110.7",
+        "user": "majtablesofficielles",
+        "password": "BSg.,pmbut5EaDR3v22L",
+        "database": "resebloc",
+        "ssl_ca": "C:/Mes Projets/Python/Deploiement_Script/Deploiement_Script/certif/DEV-14.pem"
+    },
+    "CLC": {
+        "host": "10.6.110.7",
+        "user": "majtablesofficielles",
+        "password": "BSg.,pmbut5EaDR3v22L",
+        "database": "resebloc",
+        "ssl_ca": "C:/Mes Projets/Python/Deploiement_Script/Deploiement_Script/certif/DEV-14.pem"
+    },
+    "CSR": {
+        "host": "10.4.110.7",
+        "user": "majtablesofficielles",
+        "password": "BSg.,pmbut5EaDR3v22L",
+        "database": "resebloc",
+        "ssl_ca": "C:/Mes Projets/Python/Deploiement_Script/Deploiement_Script/certif/DEV-14.pem"
+    },
+    "CSM": {
+        "host": "10.5.110.7",
+        "user": "majtablesofficielles",
+        "password": "BSg.,pmbut5EaDR3v22L",
+        "database": "resebloc",
+        "ssl_ca": "C:/Mes Projets/Python/Deploiement_Script/Deploiement_Script/certif/DEV-14.pem"
+    },
+    "CVC": {
+        "host": "10.7.110.7",
+        "user": "majtablesofficielles",
+        "password": "BSg.,pmbut5EaDR3v22L",
+        "database": "resebloc",
+        "ssl_ca": "C:/Mes Projets/Python/Deploiement_Script/Deploiement_Script/certif/DEV-14.pem"
+    },
+    "HPMB": {
+        "host": "10.105.140.7",
+        "user": "majtablesofficielles",
+        "password": "BSg.,pmbut5EaDR3v22L",
+        "database": "resebloc",
+        "ssl_ca": "C:/Mes Projets/Python/Deploiement_Script/Deploiement_Script/certif/DEV-14.pem"
+    },
+    "ADIVA": {
+        "host": "10.8.110.8",
+        "user": "majtablesofficielles",
+        "password": "BSg.,pmbut5EaDR3v22L",
+        "database": "resebloc",
+        "ssl_ca": "C:/Mes Projets/Python/Deploiement_Script/Deploiement_Script/certif/DEV-14.pem"
+    }
+}
