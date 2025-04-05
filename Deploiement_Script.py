@@ -33,6 +33,19 @@ def load_recipients():
             return json.load(file)
     return {"recipients": []}
 
+ # Vérifier un mot de passe avec un hachage salé
+def verify_password(stored_hash, password_to_check):
+    try:
+        # Extraire le sel et le hachage stocké
+        salt, stored_sha256 = stored_hash.split('$')
+        # Recalculer le hachage avec le sel et le mot de passe saisi
+        salted_password = salt + password_to_check
+        new_sha256_hash = hashlib.sha256(salted_password.encode('utf-8')).hexdigest()
+        # Comparer les hachages
+        return new_sha256_hash == stored_sha256
+    except Exception:
+        return False
+
 # Lire le contenu du fichier de message e-mail
 def load_email_message():
     if os.path.exists(EMAIL_MESSAGE_FILE):
@@ -57,7 +70,7 @@ def authenticate(username, password):
     stored_username = credentials.get("username", "")
     stored_password_hash = credentials.get("password_hash", "")
 
-    if username == stored_username and hash_password(password) == stored_password_hash:
+    if username == stored_username and verify_password(stored_password_hash, password):
         return True
     return False
 
@@ -374,6 +387,9 @@ class LoginWindow:
             messagebox.showerror("Erreur", "Veuillez entrer un nom d'utilisateur et un mot de passe.")
             return
 
+        print(f"Nom d'utilisateur : {username}")  # Pour déboguer
+        print(f"Mot de passe saisi : {password}")  # Pour déboguer
+
         # Vérifier les identifiants
         if authenticate(username, password):
             self.root.destroy()  # Fermer la fenêtre d'authentification
@@ -382,19 +398,6 @@ class LoginWindow:
             main_app_root.mainloop()
         else:
             messagebox.showerror("Erreur", "Nom d'utilisateur ou mot de passe incorrect.")
-
-    # Vérifier un mot de passe avec un hachage salé
-    def verify_password(stored_hash, password_to_check):
-        try:
-            # Extraire le sel et le hachage stocké
-            salt, stored_sha256 = stored_hash.split('$')
-            # Recalculer le hachage avec le sel et le mot de passe saisi
-            salted_password = salt + password_to_check
-            new_sha256_hash = hashlib.sha256(salted_password.encode('utf-8')).hexdigest()
-            # Comparer les hachages
-            return new_sha256_hash == stored_sha256
-        except Exception:
-            return False
 
 
 # Lancer l'application
