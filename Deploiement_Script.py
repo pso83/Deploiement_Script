@@ -7,6 +7,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import hashlib
+import re
 
 # Chemins des fichiers de configuration
 CONFIG_FILE = "db_config.json"
@@ -63,6 +64,15 @@ def load_credentials():
 # Hacher un mot de passe
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
+
+def remove_comments(sql):
+    # Supprimer les commentaires de type '--'
+    sql = re.sub(r'--.*', '', sql)
+    # Supprimer les commentaires de type '/* ... */'
+    sql = re.sub(r'/\*.*?\*/', '', sql, flags=re.DOTALL)
+    # Supprimer les lignes vides ou espaces inutiles
+    sql = '\n'.join(line.strip() for line in sql.splitlines() if line.strip())
+    return sql
 
 # Vérifier les identifiants
 def authenticate(username, password):
@@ -243,6 +253,8 @@ class SQLExecutorApp:
         if file_path:
             self.ssl_ca_var.set(file_path)
 
+    # Fonction pour supprimer les commentaires SQL
+
     def execute_sql(self, server, script_path):
         try:
             ssl_ca = server.get("ssl_ca", "")
@@ -261,7 +273,13 @@ class SQLExecutorApp:
             with open(script_path, 'r', encoding='utf-8') as file:
                 sql_script = file.read()
 
+            # Supprimer les commentaires du script SQL
+            sql_script = remove_comments(sql_script)
+
+            # Diviser le script en requêtes individuelles
             queries = [query.strip() for query in sql_script.split(';') if query.strip()]
+
+            # Exécuter chaque requête
             for query in queries:
                 cursor.execute(query)
 
@@ -386,9 +404,6 @@ class LoginWindow:
         if not username or not password:
             messagebox.showerror("Erreur", "Veuillez entrer un nom d'utilisateur et un mot de passe.")
             return
-
-        print(f"Nom d'utilisateur : {username}")  # Pour déboguer
-        print(f"Mot de passe saisi : {password}")  # Pour déboguer
 
         # Vérifier les identifiants
         if authenticate(username, password):

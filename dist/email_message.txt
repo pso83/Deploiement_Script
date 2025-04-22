@@ -1,5 +1,5 @@
 Bonjour,
 
-Le script SQL a été exécuté avec succès sur le serveur LAB.
+Le script SQL %1 a été exécuté avec succès sur tous les serveurs.
 
 Cordialement.
